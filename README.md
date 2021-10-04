@@ -1,4 +1,4 @@
-# Resumake Template 9
+# Resumake 
 > LaTeX code generated at [resumake.io](https://resumake.io)
 
 ## Usage
