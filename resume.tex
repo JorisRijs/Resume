@@ -1,0 +1,160 @@
+\documentclass[fontsize=11pt]{article}
+    \usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[protrusion=true,expansion=true]{microtype}
+\usepackage[svgnames]{xcolor}  % Colours by their 'svgnames'
+\usepackage[margin=0.75in]{geometry}
+  \textheight=700px
+\usepackage{url}
+\usepackage{lmodern} % Allow arbitrary font sizes
+\usepackage{textcomp}
+
+%% Define a new 'modern' style for the url package that will use a smaller font.
+\makeatletter
+\def\url@modernstyle{
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{}}}
+\makeatother
+\urlstyle{modern} %% And use the newly defined style.
+
+\frenchspacing              % Better looking spacings after periods
+\pagestyle{empty}           % No pagenumbers/headers/footers
+
+\renewcommand{\familydefault}{\sfdefault}
+
+%%% Custom sectioning (sectsty package)
+%%% ------------------------------------------------------------
+\usepackage{sectsty}
+
+\sectionfont{                 % Change font of \section command
+  \usefont{OT1}{phv}{b}{n}%   % bch-b-n: CharterBT-Bold font
+  \sectionrule{0pt}{0pt}{-5pt}{3pt}}
+
+%%% Macros
+%%% ------------------------------------------------------------
+\newlength{\spacebox}
+\settowidth{\spacebox}{8888888888}      % Box to align text
+\newcommand{\sepspace}{\vspace*{1em}}   % Vertical space macro
+
+\newcommand{\MyName}[1]{ % Name
+    \Huge \usefont{OT1}{phv}{b}{n} \hfill #1
+    \par \normalsize \normalfont}
+
+\newcommand{\MySlogan}[1]{ % Slogan (optional)
+    \large \usefont{OT1}{phv}{m}{n}\hfill \textit{#1}
+    \par \normalsize \normalfont}
+
+\newcommand{\NewPart}[1]{\section*{\uppercase{#1}}}
+
+\newcommand{\PersonalEntry}[2]{
+    \noindent\hangindent=2em\hangafter=0 % Indentation
+    \parbox{\spacebox}{                  % Box to align text
+    \textit{#1}}                      % Entry name (birth, address, etc.)
+    \hspace{1.5em} #2 \par}              % Entry value
+
+\newcommand{\SkillsEntry}[2]{                % Same as \PersonalEntry
+    \noindent\hangindent=2em\hangafter=0 % Indentation
+    \parbox{\spacebox}{                  % Box to align text
+    \textit{#1}}                    % Entry name (birth, address, etc.)
+    \hspace{1.5em} #2 \par}              % Entry value
+
+\newcommand{\AwardsEntry}[2]{                % Same as \PersonalEntry
+    \noindent\hangindent=2em\hangafter=0 % Indentation
+    \parbox{\spacebox}{                  % Box to align text
+    \textit{#1}}                    % Entry name (birth, address, etc.)
+    \hspace{1.5em} #2 \par}              % Entry value
+
+\newcommand{\EducationEntry}[4]{
+    \noindent \textbf{#1} \hfill      % Study
+    \colorbox{Black}{
+      \parbox{8.5em}{
+      \hfill\color{White}#2}} \par  % Duration
+    \noindent \textit{#3} \par        % School
+    \noindent\hangindent=2em\hangafter=0 \small #4 % Description
+    \normalsize \par}
+
+\newcommand{\WorkEntry}[4]{       % Same as \EducationEntry
+    \noindent \textbf{#1} \hfill      % Jobname
+    \colorbox{Black}{%
+      \parbox{9em}{%
+      \hfill\color{White}#2}} \par   % Duration
+        \noindent \textit{#3} \par        % Company
+    \noindent\hangindent=2em\hangafter=0 \small #4 % Description
+    \normalsize \par}
+
+\newcommand{\ProjectEntry}[4]{         % Similar to \EducationEntry
+    \noindent \textbf{#1} \noindent \textit{#3} \hfill {#2} \par
+    \noindent \small #4 % Description
+    \normalsize \par}
+
+\newcommand{\AwardEntry}[4]{         % Similar to \EducationEntry
+    \noindent \textbf{#1} \noindent \textit{#3} \hfill {#2} \par
+    \noindent \small #4 % Description
+    \normalsize \par}
+    \begin{document}
+    
+\MyName{Joris Rijs}
+\bigskip
+{\small \hfill joris@freya22.nl | 0627587851 | Blauwestad, NL}
+%%% Education
+%%% ------------------------------------------------------------
+\NewPart{Education}{}
+\EducationEntry
+{BS Network and Security Engineering}
+{Sep 2018 - Jul 2022}
+{Hanze University of Applied Sciences, Groningen, NL Average grade: 8.1}
+\sepspace
+\EducationEntry
+{Minor Internet Of Things}
+{Sep 2020 - Feb 2021}
+{Hanze Hogeschool, Assen, DR Average grade: 7.7}
+%%% Work experience
+%%% ------------------------------------------------------------
+
+\NewPart{Experience}{}
+
+\WorkEntry
+{Intern Cyber Engineer}
+{Feb 2021 - Jul 2021}
+{Thales, Huizen, NL}
+{\begin{itemize} \itemsep -1pt
+	\item Expanding upon an existing attack simulation to behave like an APT
+	\item Tasks: API development, APT analysis and Evasion Tactics implementation
+	\item Technical stack: Python, Flask and SQLAlchemy
+	\item Grade: 9.5
+	\end{itemize}}
+\sepspace
+\WorkEntry
+{Sales person}
+{Jan 2020 - Present}
+{Praxis, Winschoten, GR}
+{\begin{itemize} \itemsep -1pt
+	\item Giving advice to customer, ordering and managing other team members
+	\end{itemize}}
+%%% Skills
+%%% ------------------------------------------------------------
+\NewPart{Skills}{}
+\SkillsEntry{Programming languages}{Python (intermediate), Java (Novice), C (Novice)}
+\SkillsEntry{Languages}{Dutch (Native proficiency), English (Professional working proficiency)}
+\SkillsEntry{Technical experience}{Linux, Automation, Networks}
+%%% Projects
+%%% ------------------------------------------------------------
+\NewPart{Projects}{}
+
+\ProjectEntry{Smartcharging}{}
+{Jave, Python, DSMR, Linux, Azure}
+{A charge controller for EV charge points which worked based on user selectable energy consumption algorithms}
+%%% Awards
+%%% ------------------------------------------------------------
+\NewPart{Certifications}{}
+
+\AwardEntry{Cisco CCNA: Switching, Routing, and Wireless essentials}{Cisco}
+{jun 2020}
+{https://www.youracclaim.com/badges/7784ebeb-fa58-4653-9286-ed21a64edbf7}
+\sepspace
+\AwardEntry{Cisco ENSA Enterprise Networking, Security, and Automation}{Cisco}
+{jun 2020}
+{https://www.youracclaim.com/badges/a6f6f3fa-1af2-4c2b-a472-19000ac0f3e1}
+\ 
+\end{document}
